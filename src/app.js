@@ -19,4 +19,17 @@ function playPause() {
   }
 }
 
+if (song.play()) {
+  setInterval(() => {
+    progress.value = song.currentTime;
+  }, 500);
+}
+
+progress.onchange = function () {
+  song.play();
+  song.currentTime = progress.value;
+  controlIcon.classList.add("fa-pause");
+  controlIcon.classList.remove("fa-play");
+};
+
 controlIcon.addEventListener("click", playPause);
